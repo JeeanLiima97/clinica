@@ -1,5 +1,6 @@
 package br.com.ucsal.avancados.topicos.clinica.domain.entity;
 
+import br.com.ucsal.avancados.topicos.clinica.domain.entity.Enum.TipoExame;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,6 @@ public class Exame {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
+    @Enumerated(EnumType.STRING)
+    private TipoExame tipoExame;
 }
