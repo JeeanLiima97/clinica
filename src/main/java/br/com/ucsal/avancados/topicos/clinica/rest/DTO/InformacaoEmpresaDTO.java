@@ -1,4 +1,4 @@
-package br.com.ucsal.avancados.topicos.clinica.rest.controller.DTO;
+package br.com.ucsal.avancados.topicos.clinica.rest.DTO;
 
 public class InformacaoEmpresaDTO {
 
