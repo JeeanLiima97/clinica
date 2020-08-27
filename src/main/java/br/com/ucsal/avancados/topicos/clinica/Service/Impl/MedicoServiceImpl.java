@@ -8,14 +8,7 @@ import br.com.ucsal.avancados.topicos.clinica.domain.repository.ClinicaRepositor
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.MedicoRepository;
 import br.com.ucsal.avancados.topicos.clinica.rest.DTO.MedicoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Service
 public class MedicoServiceImpl implements MedicoService {
@@ -43,15 +36,16 @@ public class MedicoServiceImpl implements MedicoService {
     public Medico editar(MedicoDTO medicoDTO) {
         Integer idClinica = medicoDTO.getClinica();
         Clinica clinica = clinicaRepository.findById(idClinica)
-                .orElseThrow(() -> new RegraNegocioException("Codigo de clinica invalido"));
+                .orElseThrow(()-> new RegraNegocioException("Codigo de clinica invalido"));
+
         Medico medico = new Medico();
         medico.setCrm(medicoDTO.getCrm());
         medico.setNome(medicoDTO.getNome());
         medico.setClinica(clinica);
         medico.setId(medicoDTO.getId());
         medicoRepository.save(medico);
-
         return medico;
+
     }
 
 

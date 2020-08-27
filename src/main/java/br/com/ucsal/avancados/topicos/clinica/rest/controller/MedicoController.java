@@ -3,6 +3,7 @@ package br.com.ucsal.avancados.topicos.clinica.rest.controller;
 import br.com.ucsal.avancados.topicos.clinica.Service.MedicoService;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Medico;
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.MedicoRepository;
+import br.com.ucsal.avancados.topicos.clinica.rest.DTO.EmpresaDTO;
 import br.com.ucsal.avancados.topicos.clinica.rest.DTO.MedicoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,8 @@ public class MedicoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Medico save(@RequestBody MedicoDTO medicoDTO) {
-        return medicoService.salvar(medicoDTO);
+        Medico medico = medicoService.salvar(medicoDTO);
+        return medico;
     }
 
     @DeleteMapping("{id}")
@@ -35,15 +37,6 @@ public class MedicoController {
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Medico não encontrado"));
     }
 
-    @PutMapping("{id}")
-    public void update(@PathVariable Integer id, @RequestBody MedicoDTO medicoDTO) {
-        medicoRepository.findById(id)
-                .map(medicoAtualizado -> {
-                    medicoDTO.setId(medicoAtualizado.getId());
-                    medicoService.salvar(medicoDTO);
-                    return medicoDTO;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Medico não encontrado"));
-    }
 
 
     @GetMapping("{id}")
@@ -52,6 +45,19 @@ public class MedicoController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Medico não encontrado"));
 
     }
+
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Integer id, @RequestBody MedicoDTO medicoDTO){
+        medicoRepository.findById(id)
+                .map(medico1 -> {
+                   medicoDTO.setId(medico1.getId());
+                   medicoService.editar(medicoDTO);
+                   return medicoDTO;
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
+    }
+
 
     @GetMapping
     public List<Medico> findAll() {
