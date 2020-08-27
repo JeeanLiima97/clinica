@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/empresa")
 public class EmpresaController {
@@ -47,4 +49,9 @@ public class EmpresaController {
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
     }
 
+
+    @GetMapping
+    public List<Empresa> findAll(){
+        return empresaRepository.findAll();
+    }
 }
