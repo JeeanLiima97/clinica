@@ -33,4 +33,19 @@ public class EmpresaServiceImpl implements EmpresaService {
         return empresa;
 
     }
+
+    @Override
+    public Empresa editar(EmpresaDTO empresaDTO) {
+        Integer idClinica = empresaDTO.getClinica();
+        Clinica clinica = clinicaRepository.findById(idClinica)
+                .orElseThrow(()-> new RegraNegocioException("Codigo de clinica invalido"));
+
+        Empresa empresa = new Empresa();
+        empresa.setCnpj(empresaDTO.getCnpj());
+        empresa.setNome(empresaDTO.getNome());
+        empresa.setClinica(clinica);
+        empresa.setId(empresaDTO.getId());
+        empresaRepository.save(empresa);
+        return empresa;
+    }
 }

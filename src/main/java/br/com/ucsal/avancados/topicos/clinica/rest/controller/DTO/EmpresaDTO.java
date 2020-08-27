@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EmpresaDTO {
 
+    private Integer id;
     private Integer clinica;
     private String cnpj;
     private String nome;

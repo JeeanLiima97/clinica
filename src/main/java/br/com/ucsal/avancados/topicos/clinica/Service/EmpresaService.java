@@ -6,4 +6,5 @@ import br.com.ucsal.avancados.topicos.clinica.rest.controller.DTO.EmpresaDTO;
 public interface EmpresaService {
 
     Empresa salvar(EmpresaDTO empresaDTO);
+    Empresa editar(EmpresaDTO empresaDTO);
 }
