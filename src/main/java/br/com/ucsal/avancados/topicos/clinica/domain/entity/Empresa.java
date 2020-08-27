@@ -1,6 +1,7 @@
 package br.com.ucsal.avancados.topicos.clinica.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Empresa {
     private String nome;
     private String cnpj;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "empresa")
     private List<Funcionario> funcionarios = new ArrayList<>();
 
