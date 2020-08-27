@@ -6,4 +6,6 @@ import br.com.ucsal.avancados.topicos.clinica.rest.DTO.MedicoDTO;
 public interface MedicoService {
 
     Medico salvar(MedicoDTO medicoDTO);
+    Medico editar(MedicoDTO medicoDTO);
+
 }
