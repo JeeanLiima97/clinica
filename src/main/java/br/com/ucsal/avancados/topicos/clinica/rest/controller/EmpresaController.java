@@ -4,7 +4,7 @@ package br.com.ucsal.avancados.topicos.clinica.rest.controller;
 import br.com.ucsal.avancados.topicos.clinica.Service.EmpresaService;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Empresa;
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.EmpresaRepository;
-import br.com.ucsal.avancados.topicos.clinica.rest.controller.DTO.EmpresaDTO;
+import br.com.ucsal.avancados.topicos.clinica.rest.DTO.EmpresaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
