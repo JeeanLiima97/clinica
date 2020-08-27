@@ -1,7 +1,7 @@
 package br.com.ucsal.avancados.topicos.clinica.Service;
 
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Empresa;
-import br.com.ucsal.avancados.topicos.clinica.rest.controller.DTO.EmpresaDTO;
+import br.com.ucsal.avancados.topicos.clinica.rest.DTO.EmpresaDTO;
 
 public interface EmpresaService {
 
