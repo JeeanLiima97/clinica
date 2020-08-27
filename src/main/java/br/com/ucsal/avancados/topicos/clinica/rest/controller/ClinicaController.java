@@ -25,7 +25,7 @@ public class ClinicaController {
         return clinicaRepository.save(clinica);
     }
 
-    @GetMapping
+    @GetMapping("{id}")
     public Clinica getClinicaById(@PathVariable Integer id){
         return clinicaRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Clinica não encontrada"));
