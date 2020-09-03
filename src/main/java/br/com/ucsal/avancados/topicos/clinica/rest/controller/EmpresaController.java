@@ -1,10 +1,8 @@
 package br.com.ucsal.avancados.topicos.clinica.rest.controller;
 
 
-import br.com.ucsal.avancados.topicos.clinica.Service.EmpresaService;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Empresa;
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.EmpresaRepository;
-import br.com.ucsal.avancados.topicos.clinica.rest.DTO.EmpresaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +11,20 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/empresa")
+@RequestMapping("/api/empresas")
+@CrossOrigin("http://localhost:4200")
+
 public class EmpresaController {
 
     @Autowired
     EmpresaRepository empresaRepository;
-    @Autowired
-    EmpresaService empresaService;
+//    @Autowired
+//    EmpresaService empresaService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Empresa save(@RequestBody EmpresaDTO empresaDTO) {
-        Empresa empresa = empresaService.salvar(empresaDTO);
+    public Empresa save(@RequestBody Empresa empresa) {
+        empresaRepository.save(empresa);
         return empresa;
     }
 
@@ -40,12 +40,12 @@ public class EmpresaController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer id, @RequestBody EmpresaDTO empresaDTO){
+    public void update(@PathVariable Integer id, @RequestBody Empresa empresa){
         empresaRepository.findById(id)
                 .map(empresaNova -> {
-                    empresaDTO.setId(empresaNova.getId());
-                    empresaService.editar(empresaDTO);
-                    return empresaDTO;
+                    empresa.setId(empresaNova.getId());
+                    empresaRepository.save(empresa);
+                    return empresa;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
     }
 

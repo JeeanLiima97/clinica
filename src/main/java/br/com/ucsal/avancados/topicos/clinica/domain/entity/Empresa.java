@@ -25,9 +25,9 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa")
     private List<Funcionario> funcionarios = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "clinica_id")
-    private Clinica clinica;
+//    @ManyToOne
+//    @JoinColumn(name = "clinica_id")
+//    private Clinica clinica;
 
 
 }

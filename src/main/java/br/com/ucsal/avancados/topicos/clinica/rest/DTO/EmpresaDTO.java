@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class EmpresaDTO {
 
     private Integer id;
-    private Integer clinica;
     private String cnpj;
     private String nome;
 

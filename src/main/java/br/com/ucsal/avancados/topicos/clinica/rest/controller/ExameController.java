@@ -32,7 +32,7 @@ public class ExameController {
                 .map(exame -> {
                     exameRepository.delete(exame);
                     return exame;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exame não encontrado"));
 
     }
 

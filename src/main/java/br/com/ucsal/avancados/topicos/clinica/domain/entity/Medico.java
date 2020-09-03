@@ -22,9 +22,9 @@ public class Medico {
 
     private String crm;
 
-    @ManyToOne
-    @JoinColumn(name = "clinica_id")
-    private Clinica clinica;
+//    @ManyToOne
+//    @JoinColumn(name = "clinica_id")
+//    private Clinica clinica;
 
     @JsonIgnore
     @OneToMany(mappedBy = "medico")

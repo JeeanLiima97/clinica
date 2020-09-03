@@ -1,10 +1,8 @@
 package br.com.ucsal.avancados.topicos.clinica.rest.controller;
 
-import br.com.ucsal.avancados.topicos.clinica.Service.MedicoService;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Medico;
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.MedicoRepository;
-import br.com.ucsal.avancados.topicos.clinica.rest.DTO.EmpresaDTO;
-import br.com.ucsal.avancados.topicos.clinica.rest.DTO.MedicoDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +16,12 @@ public class MedicoController {
 
     @Autowired
     MedicoRepository medicoRepository;
-    @Autowired
-    MedicoService medicoService;
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Medico save(@RequestBody MedicoDTO medicoDTO) {
-        Medico medico = medicoService.salvar(medicoDTO);
+    public Medico save(@RequestBody Medico medico) {
+         medicoRepository.save(medico);
         return medico;
     }
 
@@ -49,12 +46,12 @@ public class MedicoController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer id, @RequestBody MedicoDTO medicoDTO){
+    public void update(@PathVariable Integer id, @RequestBody Medico medico){
         medicoRepository.findById(id)
                 .map(medico1 -> {
-                   medicoDTO.setId(medico1.getId());
-                   medicoService.editar(medicoDTO);
-                   return medicoDTO;
+                   medico.setId(medico1.getId());
+                   medicoRepository.save(medico);
+                   return medico;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
     }
 

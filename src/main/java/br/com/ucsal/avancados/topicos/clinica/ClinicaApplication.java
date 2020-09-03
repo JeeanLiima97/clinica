@@ -19,8 +19,8 @@ public class ClinicaApplication implements CommandLineRunner {
 	private ExameRepository exameRepository;
 	@Autowired
 	private EmpresaRepository empresaRepository;
-	@Autowired
-	private ClinicaRepository clinicaRepository;
+//	@Autowired
+//	private ClinicaRepository clinicaRepository;
 
 
 	public static void main(String[] args) {
