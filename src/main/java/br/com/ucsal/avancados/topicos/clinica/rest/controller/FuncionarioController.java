@@ -52,4 +52,10 @@ public class FuncionarioController {
                     return funcionario;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não encontrado"));
     }
+
+    @GetMapping("{id}")
+    public Funcionario getFuncionarioById(@PathVariable Integer id){
+        return funcionarioRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não encontrado"));
+    }
 }

@@ -54,4 +54,10 @@ public class EmpresaController {
     public List<Empresa> findAll(){
         return empresaRepository.findAll();
     }
+
+    @GetMapping("{id}")
+    public Empresa getEmpresaById(@PathVariable Integer id){
+        return empresaRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada"));
+    }
 }
