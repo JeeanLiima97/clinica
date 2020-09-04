@@ -29,13 +29,14 @@ public class FuncionarioController {
 
     }
 
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer id, @RequestBody FuncionarioDTO funcionarioDTO){
+    public void update(@PathVariable Integer id, @RequestBody Funcionario funcionarioDTO){
         funcionarioRepository.findById(id)
                 .map(funcionario -> {
                     funcionarioDTO.setId(funcionario.getId());
-                    funcionarioService.editar(funcionarioDTO);
+                    funcionarioRepository.save(funcionarioDTO);
+
                     return funcionarioDTO;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não encontrado"));
     }
