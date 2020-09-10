@@ -2,6 +2,7 @@ package br.com.ucsal.avancados.topicos.clinica.Service.Impl;
 
 import br.com.ucsal.avancados.topicos.clinica.Exception.RegraNegocioException;
 import br.com.ucsal.avancados.topicos.clinica.Service.ExameService;
+import br.com.ucsal.avancados.topicos.clinica.domain.entity.Enum.RiscoOcupacional;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Enum.TipoExame;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Exame;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Funcionario;
@@ -34,7 +35,9 @@ public class ExameServiceImpl implements ExameService {
     Exame exame = new Exame();
     exame.setFuncionario(funcionario);
     exame.setMedico(medico);
+    exame.setObservacao(exameDTO.getObservacao());
     exame.setTipoExame(TipoExame.valueOf(exameDTO.getTipoExame()));
+    exame.setRiscoOcupacional(RiscoOcupacional.valueOf(exameDTO.getRiscoOcupacional()));
     exameRepository.save(exame);
     return exame;
     }

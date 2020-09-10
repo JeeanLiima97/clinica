@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/medicos")
+@CrossOrigin("http://localhost:4200")
 public class MedicoController {
 
     @Autowired
@@ -44,7 +45,7 @@ public class MedicoController {
     }
 
 
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Integer id, @RequestBody Medico medico){
         medicoRepository.findById(id)

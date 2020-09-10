@@ -1,5 +1,6 @@
 package br.com.ucsal.avancados.topicos.clinica.domain.entity;
 
+import br.com.ucsal.avancados.topicos.clinica.domain.entity.Enum.RiscoOcupacional;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Enum.TipoExame;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,4 +28,9 @@ public class Exame {
 
     @Enumerated(EnumType.STRING)
     private TipoExame tipoExame;
+
+    @Enumerated(EnumType.STRING)
+    private RiscoOcupacional riscoOcupacional;
+
+    private String observacao;
 }

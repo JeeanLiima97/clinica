@@ -14,5 +14,7 @@ public class ExameDTO {
     private Integer medico;
     private Integer funcionario;
     private String tipoExame;
+    private String riscoOcupacional;
+    private String observacao;
 
 }
