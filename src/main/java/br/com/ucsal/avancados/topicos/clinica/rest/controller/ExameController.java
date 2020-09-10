@@ -4,6 +4,7 @@ import br.com.ucsal.avancados.topicos.clinica.Service.ExameService;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Exame;
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.ExameRepository;
 import br.com.ucsal.avancados.topicos.clinica.rest.DTO.ExameDTO;
+import br.com.ucsal.avancados.topicos.clinica.rest.DTO.ExameResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,12 @@ public class ExameController {
     @GetMapping
     public List<Exame> findAll() {
         return exameRepository.findAll();
+    }
+
+
+    @GetMapping("/risco")
+    public List<ExameResultDTO> findRisco(){
+        return exameRepository.findRiscoOperacional();
     }
 
 }
