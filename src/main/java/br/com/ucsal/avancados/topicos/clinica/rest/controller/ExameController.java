@@ -1,9 +1,11 @@
 package br.com.ucsal.avancados.topicos.clinica.rest.controller;
 
 import br.com.ucsal.avancados.topicos.clinica.Service.ExameService;
+import br.com.ucsal.avancados.topicos.clinica.domain.entity.Empresa;
 import br.com.ucsal.avancados.topicos.clinica.domain.entity.Exame;
 import br.com.ucsal.avancados.topicos.clinica.domain.repository.ExameRepository;
 import br.com.ucsal.avancados.topicos.clinica.rest.DTO.ExameDTO;
+import br.com.ucsal.avancados.topicos.clinica.rest.DTO.ExameEmpresaDTO;
 import br.com.ucsal.avancados.topicos.clinica.rest.DTO.ExameResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,10 +45,20 @@ public class ExameController {
         return exameRepository.findAll();
     }
 
-
+    @CrossOrigin("http://localhost:4200")
     @GetMapping("/risco")
     public List<ExameResultDTO> findRisco(){
         return exameRepository.findRiscoOperacional();
     }
+
+
+    @GetMapping("{id}")
+    public Exame getExameById(@PathVariable Integer id){
+        return exameRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exame não encontrada"));
+    }
+//
+//    @GetMapping("/riscoEmpresa")
+//    public List<ExameEmpresaDTO> findRiscoByEmpresa(){return exameRepository.findExameEmpresa();}
 
 }

@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//@SequenceGenerator(name="sq_empresa", sequenceName="seq_empresa")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String cnpj;
